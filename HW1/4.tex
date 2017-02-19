@@ -1,0 +1,22 @@
+\textbf{(a)} We show that a potential function does not exist with a counter example. Consider the case of 2 servers and 2 jobs with weights $w_1 = 1$ and $w_2 = 2$. Suppose originally both jobs are assigned to server $1$. Consider the following two scenarios:
+\begin{enumerate}
+\item First $1$ switches to second server, than $2$.
+\item First $2$ switches to second server, than $1$.
+\end{enumerate}
+We now analyze the change in potential function using it's definition. Under scenario $1$ potential function changes by $-2+1=-1$, under scenario $2$ it changes by $-1+2=1$, thus the same configuration(both jobs assigned to $2$) has two different values of $\Phi$, which is a contradiction.
+
+\textbf{(b)} Existence of NE is implied by (c). (if there is no NE, best response sequence never terminates).
+
+NE does not have to be unique, slightly more interestingly nor does it's value (max load). Consider the following example: 2 servers, 3 jobs with weight $w=2$ and 2 jobs with weight $w=3$. Then configuration 2-2-2 and 3-3, configuration 2-3 and 22-3 are both NE.
+
+\textbf{(c)} We argue that sequence of best responses is guaranteed to terminate at PNE. Let $x_i$ denote the load on server $i$. Consider the function $F(x) = \sum_i x_i^2$. 
+
+\uline{Lemma.} When player switches according to her best response, $F(x)$ strictly decreases.
+
+\textit{Proof.} Suppose player's weight is $w$, load on current server is $x_1+w$ and load on best response server is $x_2$. This implies $x_1>x_2$, which in turn implies 
+$$(x_1+w)^2>x_1^2+(x_2+w)^2$$
+(checks out algebraically)
+
+\uline{Theorem} Sequence of best responses terminates.
+
+\textit{Proof} By previous Lemma function $F(x)$ strictly decreases whenever best response happens (unless best response is to not move), and $F(x)$ is bounded below by $0$, hence the sequence terminates finitely.
