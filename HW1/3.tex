@@ -4,7 +4,7 @@ Consider the following graph $G$. Let $u_j,j\in[1,n]$ be the 'job' nodes, and $v
 
 \uline{Proof of correctness.} Suppose we have solved min cost matching for the described graph $G$. We argue that the corresponding job-server assignment is an equilibrium and the cost of matching is the value of potential function $\Phi$ at the equilibrium.  
 
-Notice that when a matching is minimal it is always the case that if $v_{ix}$ is matched than $\{v_{i\tilde x}|\ \tilde x<x\}$ is also matched. This implies that the cost of optimal matching is always potential function $\Phi$ corresponding to some job-server assignment. The converse is also true: For every job-server assignment in the original problem one can choose a matching that will result in the cost equal to potential function of this assignment (by first assigning jobs to nodes $x_{ix}$ with lower $x$ index). Hence min cost matching minimizes potential function and thus produces an equilibrium assignment.
+Notice that when a matching is minimal it is always the case that if $v_{ix}$ is matched than $\{v_{i\tilde x}|\ \tilde x<x\}$ is also matched (monotonicity of $r$). This implies that the cost of optimal matching is always potential function $\Phi$ corresponding to some job-server assignment. The converse is also true: For every job-server assignment in the original problem one can choose a matching that will result in the cost equal to potential function of this assignment (by first assigning jobs to nodes $x_{ix}$ with lower $x$ index). Hence min cost matching minimizes potential function and thus produces an equilibrium assignment.
 
 \textbf{(b)} For finding the optimal cost matching, we use an approach similar to (a). We use the same graph but change the edge costs.
 
@@ -15,7 +15,7 @@ when $j$ and $i$ are compatible, i.e. $i\in S_j$.
 
 Now min cost matching of $G$ corresponds to min cost job-server assignment. The argument is similar to that in (a): noticing that min cost matching corresponds to a cost of some assignment, and every assignment has a corresponding matching of the same cost. We leave the details out for brevity.
 
-\textbf{(c)} We argue that even in unconstrained case PNE may not be Nash equilibrium (when $r_i(x)$ are both monotone and convex). Consider the following example which is a discrete version of Pigou's network. There are 2 jobs and 2 servers, $r_1(x)=1+\epsilon x$, $r_2(x) = \mathbb{1}_{x>1}$. Notice that assigning both jobs to server $2$ is PNE but is not socially optimal. 
+\textbf{(c)} We argue that even in unconstrained case PNE may not be socially optimal (when $r_i(x)$ are both monotone and convex). Consider the following example. There are 2 jobs and 2 servers, $r_1(x)=1+\epsilon x$, $r_2(x) = \mathbb{1}_{x>1}$. Notice that assigning both jobs to server $2$ is PNE but is not socially optimal. 
 
 \textbf{(d)}. Consider an arbitrary mixed Nash Equilibrium and the following deviation of some player: always pick a server with min expected load. For any strategy profile, the min expected load of a server without the deviating player is at most $(n-1)/m$. Thus expected cost of the player at this deviation, and hence at the equilibrium strategy, is at most $1+(n-1)/m$. Summing over all the players and dividing by the optimal total cost of $n/m$, this gives
 
