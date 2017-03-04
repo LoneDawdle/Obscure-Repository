@@ -1,1 +1,43 @@
 problem 2
+
+\section*{2}
+
+\subsection*{a}
+
+In the multiplicative weights algorithm we have the updates
+
+$$
+w_i^{t+1} \leftarrow w_i^t (1- \eta C_i)
+$$
+
+Now if action $i$ dominates action $j$ we will have $C_j \ge C_i + \epsilon$, which gives
+
+$$
+w_j^{t+1} =  w_j^t (1- \eta C_j) \le w_j^t (1- \eta (C_i + \epsilon)) \le w_i^t (1- \eta (C_i + \epsilon))
+$$
+
+Now we have
+
+$$
+\frac{w_j^t}{w_i^t} = \frac{ \Pi_t (1- \eta C_j^t)}{\Pi_t (1- \eta C_i^t)} \le \frac{ \Pi_t (1- \eta C_i^t - \eta \epsilon)}{\Pi_t (1- \eta C_i^t)} = \Pi_t \bigg(1- \frac{\eta \epsilon}{1- \eta C_i^t} \bigg)
+$$
+
+With $\eta, C_i^T, \epsilon$ all positive and smaller then one the expression $\big(1- \frac{\eta \epsilon}{1- \eta C_i^t} \big)$ can be bounded by some real number smaller then 1 for all $t$. Then clearly $\Pi_t \big(1- \frac{\eta \epsilon}{1- \eta C_i^t} \big) \rightarrow 0$ as the upper limit tends to infinity. Then $\frac{w_j^t}{w_i^t} \rightarrow 0$ as $t \rightarrow \infty$ and we have
+
+$$
+P_t(j) = \frac{w_j}{\sum_k w_k} \le \frac{w_j}{w_i} \rightarrow 0
+$$
+
+\subsection*{b}
+
+A common example of a dominating strategy is the well known prisoners dilemma. Here the action of denying guilt dominates for both parties irrespectively of what the other one does. If the payoff matrix is as follows
+
+$$
+   M=
+  \left[ {\begin{array}{cc}
+   (1,1) & (4,0) \\ (0,4) & (5,5) \end{array} } \right]
+$$
+
+Then denying guilt is $\epsilon=1$ dominating.
+
+
