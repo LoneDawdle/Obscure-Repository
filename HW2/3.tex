@@ -1,1 +1,42 @@
-problem 3
+\textbf{a)} We essentially repeated the argument for POS from the class with more caution. Let $\tilde f$ be the equilibrium and $f^*$ the optimal flows. The potential function is $\Phi(f) = \sum_{e\in E} \sum_{x=1}^{f_e} \frac{C_e(x)}{x}$. 
+
+\uline{\textbf{Lemma 1}.} For any flow $f$, $c(f)\leq \Phi(f)$. 
+
+\textit{Proof.} Since $C_e(x)$ is a concave function, so is $r_e(x)\equiv C_e(x)/C_e(f)$. $r(0)=0, r(f_e) =1$, so by concavity we have $r(x)\geq x/f_e$ (hypograph of concave function is convex and thus contains convex hull of  $(0,0)$ and $(f_e,1)$). We now have
+
+$$
+\Phi(f) = \sum_e \sum_{x=0}^{f_e} \frac{C_e(x)}{x} = \sum_e C_e(f_e)\sum_{x=0}^{f_e} \frac{r_e(x)}{x} \geq  C_e(f_e) \sum_e \sum_{x=0}^{f_e} 1/f_e = c(f)
+$$
+
+\uline{\textbf{Lemma 2}.} For any flow $f$, $\Phi(f)\leq H_k c(f)$.
+
+\textit{Proof.} 
+
+$$
+\Phi(f) = \sum_e \sum_{x=0}^{f_e} \frac{C_e(x)}{x} \leq  \sum_e C_e(f_e) \sum_{x=0}^{f_e} \frac{1}{x} \leq c(f)H_k
+$$
+
+\uline{\textbf{Theorem}}. Price of stability for this cost sharing game is $H_k$.
+\textit{Proof.} If $\tilde f$ is best equilibrium flow, it minimizes $\Phi$ and so $\Phi(\tilde f)\leq \Phi(f)$ for any f. Using this and previous lemmas, we get
+
+$$ c(\tilde f) \leq \Phi(\tilde f) \leq \Phi (f^*) \leq c(f^*)H_k
+$$
+
+\textbf{b)}
+
+\textbf{c)} Price of stability can be as large as $k$. Consider the following example. There are two edges and all $k$ agents have to choose which one to use. The cost functions are
+
+\begin{align*}
+c_1(x) = \frac{1+\epsilon}{k},\qquad c_2(x) = \begin{cases}0\quad &if\ x<k\\ 1/k & if\ x=k \end{cases}
+\end{align*}
+(Note that this can be viewed as cost sharing game with $C_1(x)=x \frac{1+\epsilon}{k}$ and $C_2(x)= \mathbb{1}_{x=k}$, where $C_2$ is not a concave function )
+
+Now, notice that in this game there is only one equilibrium, in which all agents take the edge 2, which leads to a total cost of 1. The optimal flow is to send one agent to edge 1 and everyone else to edge to which results in a total of $\frac{1+\epsilon}{k}$
+
+\textbf{d)} To improve the bound for $C(x)=\sqrt(x)$ we strengthen the lemma 2, by showing that $\Phi(f)\leq 2 c(f)$. 
+
+\uline{\textbf{Lemma}}. $\sum_{x=1}^k 1/(2\sqrt x)\leq \sqrt k$
+
+Notice that the sum can be viewed as am upper sum approximation for the integral of some non-increasing function(that equals to 1 in $x\in [0,1]$). Thus $\sum_{x=1}^k 1/(2\sqrt x)\leq 1+ \int_{x=1}^k \frac{1}{2\sqrt x}dx = \sqrt x$
+
+Applying this lemma to $\Phi(x)$ gives us $\Phi(f)\leq \sum_e 2\sqrt f_e = 2 c(f)$
