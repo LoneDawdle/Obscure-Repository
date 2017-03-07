@@ -1,13 +1,15 @@
-\textbf{4c)} Since we are in an equilibra we must have
+\textbf{4c)}
+
+Since we are in an equilibra we must have
 
 $$
-W_j(t_i) \le W_k(t_i) + t_i
+W_j(t_i) \le W_k(t_i)
 $$
 
 Summing these inequalities up over all queus $k$ gives
 
 $$
-W_j(t_i) \le \frac{\sum_k W_k(t_i)}{K} + t_i = \frac{\sum_{j: t_j < t_i}  t_j}{K} + t_i 
+W_j(t_i) \le \frac{\sum_k W_k(t_i)}{K}  = \frac{\sum_{j: t_j < t_i}  t_j}{K} 
 $$
 
 The right hand equality comes from the fact that the total waiting time over all queus must be the sum of their waiting times, which is the sum of all their elements. This gives a bound on the waiting time for every task $i$. 
@@ -21,8 +23,7 @@ $$
 Now this is similar to our bound above, except for the limits of the summation. That difference can be bounded for any job $i$ with $t_i$ as the difference is at maximum the mean of the weights of the preceeding tasks in the same row as $i$, and as the jobs are sorted all preceeding jobs must have weight less then $t_i$. This gives 
 
 $$
-W_j(t_i) \le \sum_{j: t_j < t_{qK}}  t_j  + 2 t_i \le 2 \sum_{j: t_j < t_{qK}}  t_j  + 2 t_i = 2 W^*(t_i)
+W_j(t_i) \le \frac{\sum_{j: t_j < t_i}  t_j}{K}  \le \sum_{j: t_j < t_{qK}}  t_j  +  2 t_i =  W^*(t_i) + t_i \le 2 W^*(t_i)
 $$
 
 If every jobs waits at most twice what it would wait in the optimal solution, the total cost is at most twice of that in the optimal solution.
-
