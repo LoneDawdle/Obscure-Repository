@@ -1,0 +1,19 @@
+\textbf{a)} Formula $C=\sum_j R_j p_j$ is rather obvious, but let's demonstrate it formally. Let $x_{ij}$ be the indicator variable for job $j$ being assigned to server $i$, and let the ordering of jobs be such that $p_j$ is sorted in ascending order. We then have:
+
+\begin{align*}
+C = \sum_i \sum_{j=1}^m x_{ij}\sum_{k=1}^j x_{ik}p_k = \sum_i \sum_{k=1}^m p_k \sum_{j=k}^m x_{ij}x_{ik} = \sum_i \sum_{k=1}^m x_{ik} p_k R_k = \sum_k p_k R_k
+\end{align*}
+
+\textbf{b)}
+
+\uline{\textbf{Lemma.}} For any allocation of jobs the value of $\sum R_j$ is less or equal to it's value at "j mod n" allocation. 
+
+\textit{Proof.} Let $n_i=\sum_j x_{ij}$ be the number of jobs on server $i$. Then we have
+
+\begin{align*}
+\sum R_j = \sum_i \frac{n_i+1}{2} n_i = m/2 + \sum_i {n_i^2}{2}
+\end{align*}
+
+Now notice that the second term is minimized at "j mod n" allocation. \agcomment{why?}
+
+\textbf{c)}
