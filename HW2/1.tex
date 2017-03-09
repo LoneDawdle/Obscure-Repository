@@ -10,9 +10,10 @@ Type 2 edges: cost is 0 for $x=2$ and $1$ for $x\neq 2$
 
 Nodes $A_i$ are connected to the sink with with type 1 edges. Nodes $A_i$ are connected to $X_i$ and $not\ X_i$ with edges of cost 0. Variable node $X_i$ ($\not\ X_i$) is connected to clause node $C_j$ if $x_i$ is in clause $c_j$ (if $\neg x_i$ is in $c_j$). Nodes $c_j$ are also connected to the source with type 1 edges and to the sink with type 2 edges. (see the diagram)
 
-There are $n+m$ agents.
+There are $n+m$ agents each having a flow of $f=1$, so the total flow from source to sink has to be $m+n$.
+\bigskip
 
-\includegraphics[scale=0.5]{1.jpg}
+\includegraphics[scale=0.2]{1.jpg}
 
 \uline{\textbf{Lemma}} If original 3SAT is satisfiable, $G$ has a NE of cost 0.
 
@@ -21,5 +22,5 @@ There are $n+m$ agents.
 \uline{\textbf{Theorem}} Finding best NE in a congestion game is NP hard.
 
 
-\textif{Proof.} Notice that constructing $G$ is a polynomial in $n,m$ task. The statement now follows from previous lemmas.
+\textit{Proof.} Notice that constructing $G$ is a polynomial in $n,m$ task. The statement now follows from previous lemmas.
 
