@@ -24,6 +24,29 @@ $$
 
 \textbf{b)}
 
+The POA for normal Nash equilibra in this setting can be as large as the number of players $k$, which is illustrated in figure 15.1 in the Roughgarden book. For strong nash equilibra the POA is instead $H_k$ for constant costs, and we will here extend the proof of theorem 15.3 in the Roughgarden book to the setting where costs are concave.
+
+
+We assume that the agents of the congestion game as labeled as in section 15.4 of Roughgarden. By assumption we then have
+
+$$
+COST(P) = \sum_i COST_i(P) \le \sum_i COST_i^*(P^*_i, P_{-A_i})
+$$
+
+We now want to show that the agents always have positive externalities. We will need to prove that $C(x+1) \le \frac{x+1}{x} C(x)$ for all $x$, from which it trivially follows that the externalities are always positive. Assume that it does not hold for some $x$, then $C(x+1) - C(x) > \frac{1}{x} C(x)$, and since $C(x+1)-C(x)$ in non-increasing we have $C(x) = (C(x) - C(x-1)) + (C(x-1) - C(x-2)) + ... + (C(1) - C(0)) \ge x (C(x) - C(x-1)) > C(x)$. Clearly that is nonsensical and we have proof by contradiction that $C(x+1) \le \frac{x+1}{x} C(x)$. Now since the externalities are positive we have
+
+$$
+\sum_i COST_i^*(P^*_i, P_{-A_i}) \le \sum_i COST_i^*(P^*_i) 
+$$
+
+Now following the logic of the proof on page 212 in Roughgarden and the potential function which gives $C_i(P^*_{A_i}) = \Phi(P^*_{A_i}) - \Phi(P^*_{A_{i-1}})$ and thus
+
+$$
+COST(P) \le \sum_i C_i(P^*_{A_i}) = \sum_i \big[ \Phi(P^*_{A_i}) - \Phi(P^*_{A_{i-1}}) \big] = \Phi(P^*) \le H_k COST(P^*)
+$$
+
+
+
 \textbf{c)} Price of stability can be as large as $k$. Consider the following example. There are two edges and all $k$ agents have to choose which one to use. The cost functions are
 
 \begin{align*}
