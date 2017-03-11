@@ -1,3 +1,10 @@
 \textbf{a)}Suppose that we have a Nash equilibra where some player $i$ gets less then $N/2k$. Clearly the player $j$ with the most utility gets at least $N/k$. Now suppose that $i$ moves to the same place as $j$, if there is only $j$ there then $i$ gets at least half of the utility of $j$, which is at least $N/2k$ - if there are more then one player at that location before $i$ moves there he/she will get even more then $N/2k$. The fact that $i$ can get more then his/her utility by moving contradicts the fact that we are in a equilibra, and we have a proof by contradiction. 
 
 
+\textbf{b)} We give an outline for a potential argument and point out what is missing from it.
+
+We know that the learning algorithm achieves vanishing regret when compared to any pure strategy, in this case a particular choice of node. Thus we essentially need to demonstrate that for every history of play in $T$ rounds, there always exists such a choice of node that the resulting utility is $\frac{TN}{2k}$.
+
+Suppose we were able to show (this is not obvious nor necessarily true) that for any agent the utility of playing this repeated game is lower bounded by the utility of playing a single static game in which the opponents are playing mixed strategies using the empirical distributions of the original game. 
+
+In this static game there is going to be at least 1 player who gets $N/k$ expected utility. So if player in question also plays this strategy it would yield him at least $N/2k$ expected utility (since the game is symmetric).  This in turn implies that this mixed strategy contains a pure strategy that also yields the utility of at least $N/2k$.

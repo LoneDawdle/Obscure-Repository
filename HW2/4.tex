@@ -7,40 +7,82 @@ C = \sum_i \sum_{j=1}^m x_{ij}\sum_{k=1}^j x_{ik}p_k = \sum_i \sum_{k=1}^m p_k \
 
 \textbf{b)}
 
-\uline{\textbf{Lemma.}} For any allocation of jobs the value of $\sum R_j$ is less or equal to it's value at "j mod n" allocation. 
+The argument structure is as follows: we first demonstrates a certain constraints that ranks $R_j$ to obey (intuitively, $R_j$ cannot be all small). We then argue that among all feasible choices of ranks $R_j$, the "j mod n" allocation minimizes waiting time.
 
-\textit{Proof.} Let $n_i=\sum_j x_{ij}$ be the number of jobs on server $i$. Then we have
+\uline{\textbf{Lemma.}} WLOG, assume $m\ mod\ n =0$. (we can always add dummy jobs with processing time of 0). Let $r=m/n$ Than for any $i\in \{0,..r -1\}$, there are at least $mi$ jobs with rank $R_j\geq r - i$.
 
-\begin{align*}
-\sum R_j = \sum_i \frac{n_i+1}{2} n_i = m/2 + \sum_i {n_i^2}{2}
-\end{align*}
+\textit{Proof}.  We use induction:
 
-Now notice that the second term is minimized at "j mod n" allocation. %\agcomment{why?}
+1.All jobs are at least of rank $R_j=1$ (obvious)
 
-\textbf{c)} Since we are in an equilibra we must have
+2. If there are at least $mi$ jobs of rank $R_j\geq r-i$, there are at least $m(i-1)$ jobs of rank $R_j\geq r-i+1$. This is because there can be at most $m$ jobs with the same rank.
+
+\uline{\textbf{Theorem}} "j mod m" allocation is optimal.
+
+\textit{Proof.} Using the previous lemma, we can lower-bound the waiting time of any allocation. There are at least $mi$ jobs of rank $R_j\geq r-i$. Waiting time of these jobs is $C \geq (r-i)\sum_{j: R_j\geq r-i} p_j$. We can lower bound the total sum by assuming all of these constraints are tight (there are exactly $mi$ jobs of rank $R_j\geq r-i$) and setting $R_j<R_k$ whenever $p_j> p_k$. Now notice that 'j mod n' allocation satisfies this.
+%\uline{\textbf{Lemma.}} For any allocation of jobs the value of $\sum R_j$ is less or equal to it's value at "j mod n" allocation. 
+%
+%\textit{Proof.} Let $n_i=\sum_j x_{ij}$ be the number of jobs on server $i$. Then we have
+%
+%\begin{align*}
+%\sum R_j = \sum_i \frac{n_i+1}{2} n_i = m/2 + \sum_i {n_i^2}{2}
+%\end{align*}
+%
+%Now notice that the second term is minimized at "j mod n" allocation. %\agcomment{why?}
+%
+%\uline{\textbf{Theorem.} "j mod n" allocation in optimal waiting time.
+%
+%\textit{Proof.} Let $R_j^*$ be the rank coefficients corresponding to the "j mod n" allocation. Coefficients $R_j$ cannot be arbitrary numbers, but allowing them to be can only decrease the optimal objective. With this relaxation in mind and in the light of previous lemma, we can formulate the problem of finding optimal waiting time as
+%
+%\begin{align*}
+%\max\ &\sum_j R_j p_j\\
+%s.t. &\sum_j R_j \geq \sum_j R_j^*
+%\end{align*}
+
+
+
+\textbf{c)} We prove (2,0) smoothness by analyzing the deviation of choosing a server at random. The POA for CCE bound follows immediately.
+
+
+We start with lower bounding the cost of agent $j$ at optimal outcome $A^*$. At the optimal allocation, agent $j$'s waiting time is
+
+$$C_j(A^*) = \sum_{\substack{k: p_k \leq p_j,\\ k\ mod\ m = j\ mod\ m}} p_k\ \geq\  \frac{\sum_{k: p_k < p_j}}{m} $$
+
+The last bound needs justification: for any $p_k,k>m$ we have $mp_j\geq \sum_{l\in {k-m,...k-1}} p_l $ (here we assume that $p_k$ are sorted in ascending order).For $k<m$ we have $kp_k\geq \sum_{l<k} p_l$. 
+
+We also have $C_j(A^*)>p_j$. (The job would at least have to wait it's own time). Combining these two bounds, we get
+
+$$C_j(A^*)\geq \frac{\frac{\sum_{k: p_k < p_j}  p_k}{m} + p_j}{2}$$
+
+Now, assume all other agents occupy arbitrary servers (we will refer to this as strategy profile $A_{-i}$). Let's upper bound the expected utility of agent $j$ when he chooses server at random (we'll call this strategy $\tilde A_i$). 
 
 $$
-W_j(t_i) \le W_k(t_i) + t_i
+C_j(\tilde A_i,A_{-i}) =  \frac{\sum_{k: p_k < p_j}  p_k}{m} + p_j \leq 2C_j(A^*)
 $$
 
-Summing these inequalities up over all queus $k$ gives
-
-$$
-W_j(t_i) \le \frac{\sum_k W_k(t_i)}{K} + t_i = \frac{\sum_{j: t_j < t_i}  t_j}{K} + t_i 
-$$
-
-The right hand equality comes from the fact that the total waiting time over all queus must be the sum of their waiting times, which is the sum of all their elements. This gives a bound on the waiting time for every task $i$. 
-
-Let us assume that the total number of jobs is evenly divisible by $k$, which can be achieved by adding jobs of weight zero. Now in the given optimal solution the total waiting time for 'row' $q$ must be $K$ times their average waiting time plus the sum of the jobs, which is
-
-$$
-\sum_k \bigg( t_k + \frac{1}{k} \sum_{k'} W_{k'} \bigg) = \sum_k t_k +  \sum_{j: t_j < t_{qK}}  t_j 
-$$
-
-Now this is similar to our bound above, except for the limits of the summation. That difference can be bounded for any job $i$ with $t_i$ as the difference is at maximum the mean of the weights of the preceeding tasks in the same row as $i$, and as the jobs are sorted all preceeding jobs must have weight less then $t_i$. This gives 
-
-$$
-W_j(t_i) \le \sum_{j: t_j < t_{qK}}  t_j  + 2 t_i \le 2 \sum_{j: t_j < t_{qK}}  t_j  + 2 t_i = 2 W^*(t_i)
-$$
-
-If every jobs waits at most twice what it would wait in the optimal solution, the total cost is at most twice of that in the optimal solution.
+%
+%$$
+%W_j(t_i) \le W_k(t_i) + t_i
+%$$
+%
+%Summing these inequalities up over all queus $k$ gives
+%
+%$$
+%W_j(t_i) \le \frac{\sum_k W_k(t_i)}{K} + t_i = \frac{\sum_{j: t_j < t_i}  t_j}{K} + t_i 
+%$$
+%
+%The right hand equality comes from the fact that the total waiting time over all queus must be the sum of their waiting times, which is the sum of all their elements. This gives a bound on the waiting time for every task $i$. 
+%
+%Let us assume that the total number of jobs is evenly divisible by $k$, which can be achieved by adding jobs of weight zero. Now in the given optimal solution the total waiting time for 'row' $q$ must be $K$ times their average waiting time plus the sum of the jobs, which is
+%
+%$$
+%\sum_k \bigg( t_k + \frac{1}{k} \sum_{k'} W_{k'} \bigg) = \sum_k t_k +  \sum_{j: t_j < t_{qK}}  t_j 
+%$$
+%
+%Now this is similar to our bound above, except for the limits of the summation. That difference can be bounded for any job $i$ with $t_i$ as the difference is at maximum the mean of the weights of the preceeding tasks in the same row as $i$, and as the jobs are sorted all preceeding jobs must have weight less then $t_i$. This gives 
+%
+%$$
+%W_j(t_i) \le \sum_{j: t_j < t_{qK}}  t_j  + 2 t_i \le 2 \sum_{j: t_j < t_{qK}}  t_j  + 2 t_i = 2 W^*(t_i)
+%$$
+%
+%If every jobs waits at most twice what it would wait in the optimal solution, the total cost is at most twice of that in the optimal solution.
