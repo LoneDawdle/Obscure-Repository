@@ -9,6 +9,8 @@ Type 1 edges: cost is 0 for $x=1$ and $1$ for $x\neq 1$: $c(x) = \mathbb 1[x\neq
 
 Type 2 edges: cost is 0 for $x\leq m$ and $1$ for $x>m$: $c(x) = \mathbb 1 [x>m]$
 
+Type 3 edges: cost is 0 for $x=m,x=0$ and $1$ otherwise: $c(x) = 1- \mathbb 1 [x\neq0]\mathbb 1 [x\neq m]$
+
 Nodes $C_j$ are connected to the source with type 1 edges. Variable node $X_i$ ($\neg\ X_i$) are connected to clause node $C_j$ if $x_i$ is in clause $c_j$ (if $\neg x_i$ is in $c_j$) with edges of cost 0.  Variable nodes $X_i,\ \neg X_i$ are also connected to the $A_i$ node with type 3 edges and to the sink with type 2 edges. Nodes $A_i$ are connected to the source with type 2 edges.
 
 \includegraphics[scale=0.1]{1.jpg}
@@ -30,7 +32,7 @@ Now, notice that in such a flow costs on all edges are 0, and so this is an equi
 
 For cost to be 0, all type 3 edges have to have cost of 0. Assign $x_i$ to be true if connected to it type 3 edge has 0 flow and false if it has flow of $m$ (those are the only possibilities). 
 
-Now take arbitrary clause node $C_j$. Because total cost is 0, it has to be that it has a flow of 1 going through it. We argue that the variable corresponding to the node $X_i$ (or $\neg X_i$) through which this flow goes to the sink is assigned true. Indeed, if it is not so, the corresponding type 2 edge has a flow of at least $m+1$ and hence the cost of 1, which is a contradiction to 0 cost equilibrium. Thus the corresponding to node $C_j$ clause $c_j$ is satisfied by such an assignment.
+Now take arbitrary clause node $C_j$. Because total cost is 0, it has to be that it has a flow of 1 going through it (if there isn't, there is going to be a type 2 edge from $s$ to $A_i$ that has a flow of more than $m$, which would lead to non-zero cost). We argue that the variable corresponding to the node $X_i$ (or $\neg X_i$) through which this flow goes to the sink is assigned true. Indeed, if it is not so, the corresponding type 2 edge has a flow of at least $m+1$ and hence the cost of 1, which is a contradiction to 0 cost equilibrium. Thus the corresponding to node $C_j$ clause $c_j$ is satisfied by such an assignment.
 
 \uline{\textbf{Theorem}} Finding best NE in a congestion game is NP hard.
 
