@@ -1,0 +1,32 @@
+The obvious strategy is taking the multiplicative weights algorithm and change the weights according to $w_t^i \rightarrow w_t^i (1 + \epsilon u_i^{t+1})$. Taking $W_T = \sum_i w_t^i$ as the potential function we have
+
+$$
+W_{t+1} = \sum_i w_{t+1}^i = \sum_i w_t^i (1 + \epsilon u_i^{t+1}) = W_t \bigg(1 + \epsilon \sum_i \frac{w_t^i}{W_t} u_i^{t+1} \bigg) = W_t (1 + \epsilon A_t)
+$$
+
+Here we let $A_t$ denote the expected utility in step $t+1$. This clearly gives us, through $1+x \le e^x$
+
+$$
+W_t = n \Pi_t (1 + \epsilon A_t) \le n \times exp \bigg( \epsilon \sum_t A_t \bigg)
+$$
+
+We also clearly have
+
+$$
+W_t \ge \max_i w_t^i = \Pi_t (1 + \epsilon u_i^t) = exp \bigg( \sum_t ln(1 + \epsilon u_i^t) \bigg) \ge exp \bigg( \sum_t (\epsilon u_i^t) - (\epsilon u_i^t)^2/2  \bigg) 
+$$
+
+
+$$
+\ge exp \bigg( \sum_t (\epsilon u_i^t) - (\epsilon^2 u_i^t)/2  \bigg)
+$$
+
+Here we have used the fact that $u_i^t \ge 1$. The two bounds on the potential function can be combined, and we can take the logarithm of both sides to get
+
+$$
+ln(n) + \epsilon \sum_t A_t \ge \sum_t (\epsilon u_i^t) - (\epsilon^2 u_i^t)/2
+$$
+
+$$
+\iff \sum_t A_t \ge (1- \epsilon) \sum_t u_i^t - \frac{ln(n)}{\epsilon}
+$$
