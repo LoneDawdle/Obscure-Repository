@@ -1,0 +1,45 @@
+\textbf{a)} Optimal value can be upper-bounded by the optimal fractional solution $\{x_i\}$. Let $j$ be the index of the last bidder who gets the items and $n$ the number of not allocated items under described greedy procedure. 
+
+\textbf{\uline{Lemma}}. Optimal fractional solution is the described greedy assignment with additional fractional allocation of $x_{j+1} = n/ n_{j+1}$.
+
+Proof. Suppose not, then at optimal solution there exists a player $i\leq j$ s.t. $x_i<x_i^{greedy}$ and a player $k\geq j$ s.t. $x_k>x_k^{greedy}$. Set $\tilde x_i=x_i+\epsilon/n_i$ and $\tilde x_k = x_k - \epsilon/n_k$. Clearly for small enough $\epsilon$ $\tilde x$ is a feasible allocation, and since $v_i/n_i>v_k/n_k$, $\tilde x$ yields a better objective than $x$ and thus contradicts it's optimality.
+
+\textbf{b)} This is single-parameter setting, allocation rule is monotone (bidding higher can only move agents towards the beginning of sorted array in greedy and thus increase the allocation). So Myerson's Lemma applies and the payment rule in the problem statement is exactly Myerson's payment rule. 
+
+(In class we defined Myerson payments via derivative of allocation rule, and although it also works for non-continuous allocation functions, we present an alternative proof in case this is considered "cheating") Notice two properties of the mechanism:
+
+1. Conditioned on allocation(on whether the agent gets $n_i$ items), the payment does not depend on agent's bid
+\bigskip
+
+2. Given the price for allocation, mechanism maximizes agent's utility if $b_i=v_i$ (in described mechanism agents gets allocation only if $v_i/n_i\geq \{b/n\}_{min}$, so the agent gets the allocation only when his value is higher than the price)
+
+\bigskip
+
+Now, any mechanism with these two properties is DSIC. To argue for that, we can interpret it in the following way. 
+\bigskip
+
+The mechanism first determines the price per unit(minimal $b/n$ that yields allocation). Then direct revelation is applied to this posted price scheme: treating agent's bid as valuation report the mechanism chooses for him whether to "buy space" as to maximize agent's utility. Thus it is optimal for agent to report truthfully: mechanism is performing optimization of utility for him.
+
+\textbf{c)} Myerson's payment rule is unique, so since the previous payment yielded DSIC this one would not. Alternative argument:
+
+Conditioned on getting the items, the price agent $i$ pays depends on his bid, and he is thus incentivized to optimize his report as to minimize the price for the allocation. In particular, whenever $v_i$ is bigger than minimal value of $b_i$ that yields allocation, it is optimal for $i$ to report $b_i$ (And when agent's values per item are distinct it is strictly better strategy than truth-telling for every agent but the "last")
+
+\textbf{d)} We now prove POA for mechanism in part c). Consider the following deviation $b^*$: if agent $i$ gets the allocation at optimum (optimum, not greedy solution), he bids $v_i/2$ and bids 0 otherwise. Observe that for players who bid non-zero the following lower bound holds:
+
+$$
+u_i(b^*_i,b_{-i})\geq \frac{v_i}{2}-b^i_{min}
+$$
+
+,where $b^i_{min}$ is the minimal bid that yields allocation for $i$ under strategy profile $b$. Indeed, if agent gets the items his utility is at least $v_i-v_i/2$, and if he doesn't get the items it means the minimal bid for allocation was higher than $v_i/2$.
+
+Now, let's sum deviation utilities of all players, this yields
+
+$$
+\sum_i u_i(b_i^*,b_{-i})\geq \frac{W^*}{2}-\sum_{i: x^*_i=n_i} b^i_{min}
+$$
+
+Now, because of no overbidding, the max value of $\sum_{i: x^*_i=n_i} b^i_{min}$ is achieved when everyone bids their value and in this case $\sum_{i: x^*_i=n_i} b^i_{min}\leq W^{greedy}\leq W^*$. Now the POA bound of 1/4 follows.
+
+\textbf{e)} When $n_i$ is private, the analysis does not extend(the last step of bounding  $\sum_{i: x^*_i=n_i} b^i_{min}$ fails), and in fact equilibrium welfare can be bad, as we demonstrate in the following example.
+
+Consider 2 bidders, $v_1=2/(k-1)$, $v_2=1$, $n_1=1,n_2=k-1$. Optimal welfare is $v_1+v_2>1$. Now notice that player $1$ reporting $b_1=v_1,n_1=2$ (pretending to want 2 items instead of 1) and player $2$ reporting $b_2=0, n_2=N-1$ is an equilibrium, and welfare is $1/(k-1)$. Thus inefficiency is $1/(k-1)$

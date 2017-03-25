@@ -1,0 +1,15 @@
+\textbf{a)} We essentially repeat the argument for the single item, with agents bidding uniformly at random on the item they are supposed to get at the optimal allocation.
+
+Let $x^*$ denote the optimal allocation. Let $A_i^*$ be the strategy of $i$-th player to bid uniformly at random $b_i\in[0,v_ij]$ on item $j$ s.t. $x_{ij}^*=1$. Then, for for any bids of other agents we have
+
+$$
+u_i(A^*,A_{-i}) \geq \sum_j x_{ij}^*[v_{ij} \frac{v_i-b_{max}}{v_ij} - v_{ij}/2]= \sum_j x_{ij}^*[v_{ij}/2-Rev_j(A)]
+$$
+
+Summing over all the agents yields
+
+$$
+\sum u_i(A_i^*,A_{-i}) \geq \sum_i x_{ij}^* v_{ij}/2 - Rev(A)
+$$
+
+Here we used the fact that $\sum_{i,j} x_{ij}^*Rev_j(A)\leq Rev(A)$ (revenue from some items is always smaller than the total revenue). The result now follows with the standard smoothness argument.
