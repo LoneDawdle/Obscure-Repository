@@ -34,11 +34,18 @@ $$
 
 Now, let's sum deviation utilities of all players, this yields
 
-$$
+\begin{align}
+\label{eq:smooth}
 \sum_i u_i(b_i^*,b_{-i})\geq \frac{W^*}{2}-\sum_{i: x^*_i=n_i} b^i_{min}
-$$
+\end{align}
 
-Now, because of no overbidding, the max value of $\sum_{i: x^*_i=n_i} b^i_{min}$ is achieved when everyone bids their value and in this case $\sum_{i: x^*_i=n_i} b^i_{min}\leq W^{greedy}\leq W^*$. Now the POA bound of 1/4 follows.
+\textbf{\uline{Lemma}}. $\sum_{i: x^*_i=n_i} b^i_{min} \leq \frac{c}{c-1}W^{Greedy}$
+
+Proof. Let $\rho(b)$ be the minimal value per item that got allocation under bid profile $b$. Then $b^i_{min}\leq \rho n_i$. Because optimal allocation is feasible, $\sum_i x^*_i n_i \leq k$, $\sum_{i: x^*_i=n_i} b^i_{min} \leq k\rho(b)$ , and because of no overbidding welfare of greedy outcome is at least the bids of players who got the allocation $W^{greedy} \geq \rho n_{greedy}$. Using the assumption on demand sizes we get $W^{greedy}\geq \frac{c}{c-1}k\rho$. Combining these yields the inequality.
+\bigskip
+
+Now applying the lemma on obtained above inequality \eqref{eq:smooth} and using standard argument yields the POA of $\frac{c-1}{2(2c-1)}$ (close to 1/4 when c is large).
+
 
 \textbf{e)} When $n_i$ is private, the analysis does not extend(the last step of bounding  $\sum_{i: x^*_i=n_i} b^i_{min}$ fails), and in fact equilibrium welfare can be bad, as we demonstrate in the following example.
 
