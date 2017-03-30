@@ -14,7 +14,15 @@ $$
 
 Here we used the fact that $\sum_{i,j} x_{ij}^*Rev_j(A)\leq Rev(A)$ (revenue from some items is always smaller than the total revenue). The result now follows with the standard smoothness argument.
 
-\textbf{b)} Can show that bidding on multiple items can be a best response, but is this enough?
+\textbf{b)} Equilibria with bidding on multiple items exist.
+
+Proof. Consider an all-pay auction with 2 players and N items all of which have the same value $v$ for both players. We know that an equilibrium exists.
+
+BWOC, suppose at this equilibrium both players bid on a single item. Note that utility of agent 1 is strictly less than $v$ (if he bids zero than with probability 1/N he only gets "half the item" so $u=v-v/2N$, if he bids more than zero $b>0$ utility on winning is v-b<v). 
+
+Now consider the following deviation for agent 1: bid zero (or arbitrarily small $\epsilon$) on two randomly selected items. Since the other agent only bids on 1 item, agent 1 is guaranteed to win one item out of the two and get the utility of $v$ (or $v-2\epsilon$). Thus bidding on a single item cannot be a NE in this case.
+
+Note. Bidding 0 on multiple items may be considered illegal or trivial, this is why we also propose the "bid $\epsilon$" deviation in the proof. In fact it can easily be shown that in the example above an equilibrium would have a non-zero expected bid on every item.
 
 \textbf{c)}
 
