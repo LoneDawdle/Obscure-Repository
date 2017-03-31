@@ -1,5 +1,43 @@
 \textbf{a)} 
 
-1. Let's first prove the smoothness-like inequality. $b_i'$ is essentially sampling highest among other players bid and bidding it. Thus probability of winning is $1/2$ (probability of random variable being bigger than identical random variable is 1/2). The payment under strategy $b_i'$ can be upper bounded by making the agent pay every time he bids, which results in $p(b_i')\leq \mathbb E_{p\in \cal P}(p)$. The smoothness-like inequality now follows.
+Consider the following deviation for player $i$: sample $p\sim \cal P$ (where price is random variable associated with the maximum of all bids at equilibrium, including i's), if $v_i>p$ bid $p$ otherwise bid $v_i$.
 
-2. 
+\textbf{\uline{Lemma.}} For the described deviation the following inequality holds:
+
+$$
+\E u_i(b_i',b_{-i}) \geq \E_{v_i,v_{-i},p \sim \cal P}\left [ \mathbb 1 [v_i>v_{-i}](v_i/2-p) \right]
+$$
+
+\textbf{Proof.} By construction deviating utility is always non-negative, so it can be lowerbounded with $\mathbb 1[v_i\geq v_{-i}](v_i x_i-b_i)$, where $x_i$ is allocation. Now when $v_i>v_{-i}$ we have two cases:
+
+1) Deviating agent $i$ samples $p>v_i$, in this case agent bids $v_i$ and wins(by assumption $v_i>v_{-i}$ and agents $-i$ at equilibrium don't overbid).His utility is 0, and his bid is the upper bound for the  random price of this instance of the auction (because his strategy $b_i$ at equilibrium cannot overbid)
+
+2) Agent samples $p<v_i$ and bids $p$. Since $p$ is independent of everyone else's bid (because $v_i$ is), probability of winning $x_i=1/2$.
+
+Thus we have that conditioned on $v_i>v_{-i}$ agent's utility in both cases can be upper-bounded with $v_i/2-p$ (it's a bit informal because $p$ is random, but more formally it holds for every realization of everyone's bids at equilibrium)
+
+\textbf{\uline{Theorem}}. POA is 1/2.
+
+\textbf{Proof.} We sum up inequalities from the previous lemma for all players. Notice that $\E_{v_i,v_{-i}}\left [ \mathbb 1 [v_i>v_{-i}](v_i/2\right] = \E v_{opt}/2=W^*/2$. Thus we get
+
+$$
+\sum_i u_i (b_i',b_i) \geq W^*/2 - \E_{p \sim \cal P} p=W^*/2 - Rev(b) 
+$$
+
+The standard manipulations now yield the needed bound.
+
+\textbf{(b,c)} 
+
+In case of two items, we suggest using the described above deviation for one of the items. Let $b_i^j$ be the deviation of bidding on j-th item, and let $p_j \sim \cal P_j$ be the random price of item $j$ at equilibrium.
+
+Since agent only bids on 1 item, bounds from previous part apply and we get
+
+$$
+\E \sum_i u_i(b_i,b_{-i})\geq \E \sum_i \frac{u_i(b_i^1,b_{-i})+u_i(b_i^2,b_{-i})}{2} \geq \frac {\E(v^1_{opt}+v^2_{opt})}{2} - \E_{p_1,p_2}(p_1+p_2)
+$$
+
+Now if valuations are subadditive we have $W^*\leq v^1_{opt}+v^2_{opt}$, and $\E_{p_1,p_2}(p_1+p_2)$ is exactly the revenue of the auction at the equilibrium by definition. The POA bound of 1/2 follows.
+
+\textbf{d}. We have explicitly used independence of values in case 2) of proof of the lemma in part a). Thus the argument does not extend to correlated values. 
+
+As for the CE and CCE guarantees, nowhere in the proof have we used the fact that agents bids at equilibrium are independent of each other, and so the proof seems to directly apply to these equilibria. 
