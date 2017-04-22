@@ -1,0 +1,22 @@
+\textbf{a)} Clearly bidding your value in this auction is a dominant strategy for players, and so the only NE without dominated strategy is that in which all players bid their values. This equilibrium is efficient, i.e. price of anarchy is 1. 
+
+\textbf{b)} The outcome of this game with budgets is not always socially optimal. Consider following example with 1 item and 2 players: player 1 has value of 1 and some budget $B_1>0$, and player 2 has value of 2 and budget of $0$. Clearly player 1 is going to get the item for the price of 0, which is not the optimal outcome.
+
+\textbf{c)} Let $S\subset T$ and let $j$ be some item. We have three cases:
+\begin{enumerate}
+\item $v_i(T\cap \{j\})< B_i$. Then clearly $v_i(S\cap \{j\})< B_i$, and we have $v_i(T\cap \{j\})-v_i(T) = v_i(S\cap \{j\})-v_i(S) = v_ij$
+\item $v_i(T\cap \{j\})=B_i$ but $v_i(S\cap \{j\})< B_i$. Then we have $v_i(S\cap \{j\}) = v_i(S)+ v_{ij}$ and using the fact that $v_i()$ is clearly subadditive we have
+
+$$v_i(T \cap \{j\})-v(T) \leq v_i(T)+v_{ij}-v_i(T) = v_{ij} = v_i(S\cap \{j\}) - v_i(S)$$
+\item Finally, suppose $v_i(T\cap \{j\})=v_i(S\cap \{j\})=B_i$. Since $v_i$ is monotone non decreasing $v_i(T)\geq v_i(S)$, and so we have
+
+$$v_i(T \cap \{j\})-v_i(T) = B_i - v_i(T) \leq B_i - v(S) = v_i(S\cap \{j\}) - v(S)$$
+\end{enumerate}
+
+Thus we have demonstrated that inequality $$v_i(T \cap \{j\})-v_i(T) \leq v_i(S\cap \{j\}) - v_i(S)$$ holds whenever $S \subset T$ and so $v_i()$ is submodular.
+
+\textbf{d)} Player with "truncated" valuations $ev_i$ can behave differently. Essentially switching to $ev_i()$ eliminates preferences between any sets $S_1$ and $S_2$ s.t. $v_i(S_1),v_i(S_2)>B_i$. To make this argument more rigourous, we give an example in which a pure full-information NE for $ev_i()$ is not an equilibrium for $v_i()$:
+
+Consider 2 players and 2 items, $B_1=1,B_2=1-\epsilon$, $v_1(1)=2, v_2(1) = 10, v_1(2) = 10, v_2(2) = 2$. The bid profile $b_1(1) = 1, b_1(2)=0,b_2(1) = 0, b_2(2)=1-\epsilon$. This is a pure NE for $ev_i()$ valuation function: players utility do not increase from shifting their bid to the other item. However if players use $v_i$ valuations, player 1 can increase her utility by bidding $b_1(1)=0, b_1(2) = 1$.  
+
+\textbf{e)} In class (Lecture 26) we have proved a POA bound of 2 for simultaneous 2nd price auction and XOS valuations. $ev()$ is submodular and hence XOS, so the same bound applies $eSW\geq \frac 1 2 eOpt(v)$. Now since $v_i(S)\geq ev_i(S)$ we have $SW(b)\geq eSW(b)\geq \frac 1 2 eOpt (v)$
