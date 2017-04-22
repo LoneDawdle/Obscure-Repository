@@ -1,0 +1,28 @@
+
+\section{P1}
+
+\textbf{a)}
+
+In the optimal solution, if the produces makes items he/she should give as many away as possible as that will monotonously raise the welfare (assuming positive valuations). The produces should clearly only incur the cost if it is less then the total valuation of the good. Any player whose valuation doesn't make the difference between the good being produced or not in the optimal solution should then be charged 0, and any player whose valuation makes the difference should be charged the producers cost minus everyone elses valuation, which by assumption is positive. If the good is not produced the potential producer damages the society the total valuations of all player, which by assumption is less then one. If the good is produced there is no damage to society, and the producer shouldn't be charged at all.
+
+
+In the case of many customer having non-critical valuation no one will pay the producer, so the game is not budget balanced. Clearly when no customer have critical values the payment is 0, so it is not guaranteed to be 1. 
+
+It is however true that the total payment is at most one. Since only critical player pay, and since the payment only decreases with the total valuation, we can assume that we have $k$ critical players whose valuations exactly add upp to 1. Now every player will pay his/her own valuation, and all those payments by assumption adds up to one, hence the total payment is at most one.
+
+\textbf{b)}
+
+The price increases monotonously, so if the price is too high at some point it will stay too high. Hence it is not advantegous to stay in.
+
+\textbf{c)}
+
+We will prove the following statements with induction
+
+\begin{itemize}
+\item The maximal difference between the optimal and achievable welfare for $n$ players is given by $\sum_{i=1}^n \frac{1}{i} - n \epsilon - 1$, for arbitraily small $\epsilon$.
+
+\end{itemize}
+
+
+Clearly the statements holds for the base case $n=1$. Assume that it holds for players up to $n$ and consider the game with $n+1$ players. If all players agree to the bid we get positive utility, which we will see is not the worst we can do, so we will therefore consider the case where at least one player refuses the offer. The difference between the optimal and achievable welfares increases with the values of the player that opts out, so we assume that all $t$ players opting out has valuation $1/(n+1)- \epsilon$. Not for the players that doesn't opt out the auction continues, and as those players bids haven't been assigned we can assign them freely - from the induction assumption we know to assign them according to $1/i - \epsilon$. From that formula it follows that is is optimal to chose $t=1$, which gives us the desired results.
+
