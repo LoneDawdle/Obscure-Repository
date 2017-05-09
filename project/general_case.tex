@@ -1,3 +1,31 @@
 \section{General per-item correlation}
 
-The counter-example in \cite{roughgarden} makes a significant use of inter-item correlation, i.e. $cor(v_{ij},v_{ik})\neq 0$. However it can be argued that such type of correlation is not as important in practice as per-item correlation where $v_{ij}$ and $v_{kj}$ are correlated but $cor(v_{ij},v_{ik}) = 0$. Unfortunately, it turns out that this additional assumption does not guarantee a constant factor POA, which we show with the following counter-example.
+The counter-example in \cite{roughgarden} makes a significant use of inter-item correlation, i.e. $cov(v_{ij},v_{ik})\neq 0$ for $k\neq j$. However, it can be argued that such type of correlation is not as important in practice as per-item correlation where $v_{ij}$ and $v_{kj}$ are correlated but $cor(v_{ij},v_{ik}) = 0$. 
+
+
+Unfortunately, it turns out that this additional assumption is not enough to guarantee a constant factor POA, which we show with the following counter-example.
+
+\begin{example}
+We essentially construct a situation analogous to \cite{roughgarden} but only using per-item correlations.
+
+There are $n$ players and $n+\sqrt{2N}$ items. Players are unit-demand and 
+$$v_{ij} =\begin{cases} 
+1\quad w.p.\ s_j\\
+0\quad otherwise
+\end{cases}
+\quad
+s_j = \begin{cases}
+1/N \quad &w.p.\ 1-\frac{1}{1\sqrt{N}}\\
+1 \quad &w.p.\ \frac{1}{1\sqrt{N}}
+\end{cases}
+$$
+First, notice that for large $N$ with high probability with have that $s_j=1$ for no more than $2\sqrt{N}$ no less than $\sqrt{N/2}$ items. Let's call this event $\mathcal{E}_{common}$. (Chernoff bounds can be used to show that this probability is in fact close to 1). This is a bound for the number of "common items".
+
+Conditioned on $\{s_j\}$ and $\mathcal{E}_{common}$, value distributions of players are independent, and for every agent $i$ there is with probability $\sim 1/e$ a "fluctuation" item $j(i)$ s.t. $s_j=1/N$ and $v_ij = 1$. Notice that, conditioned on $\{s_j\}$, $j(i)$ and $j(i')$ are independent for any players $i$ and $i'$. Clearly the expected optimal welfare under $\{s_j\}$ and $\mathcal{E}_{common}$ is greater than expected welfare of a matching in which every player chooses $j(i)$ (if there are multiple $j(i$ player chooses a random one), which we is $n/e$ (because for every item the probability of no one picking it is $1/e$)
+
+However, picking item $j(i)$ is not a feasible strategy for a player, since it hinges on knowing what $\{s_j\}$ are. In fact it's easy to notice that picking a random item s.t. $v_{ij}=1$ is an equilibrium, because all such items are equally likely to be picked by someone else and thus choosing them yields equal expected payoff. Let's upper-bound welfare of this equilibrium conditioned on $\mathcal{E}_{common}$. Each player has value of 1 for $\geq\sqrt{N}/2$  "common" items (s.t. $s_j=1$) and w.h.p. $O(1)$ "fluctuation" items(s.t. $s_j$=1/N). It follows that probability of picking a "fluctuation item" is $O(1\sqrt{N})$, and welfare from fluctuation items is $O(\sqrt{N})$. Welfare from common items is at most $2\sqrt{N}$.
+
+Thus we have shown that conditioned on a high probability event $\mathcal{E}_{common}$ expected optimal welfare is at least $n/e$ and expected welfare of an equilibrium is at most $O(\sqrt{N})$, and thus POA is arbitrary bad for large $N$.
+
+\agcomment{to get rid of O() notation}
+\end{example}
