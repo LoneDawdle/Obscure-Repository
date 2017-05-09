@@ -86,23 +86,13 @@
 \title{POA guarantees for correlated values
 }
 \maketitle
-\section{Introduction}
+\input{intro}
 
-\cite{survey} provides guarantees for the independent case, \cite{roughgarden} shows that POA can be arbitrary bad for general correlation. However correlation is practically important scenario, and even partial positive results can be of value.  
+\input{general_case}
 
-We consider two specific ideas: general per-item correlation and negative correlation. For first we show a counterexample, for second we outline a potential approach for a proof.
+\input{negative_cor}
 
-We also give an alternative proof of POA for uncorrelated values which we have discovered along the way and find to be more intuitive that the approach taken in \cite{survey}.
-
-\section{General per-item correlation}
-
-The counter-example in \cite{roughgarden} makes a significant use of inter-item correlation, i.e. $cor(v_{ij},v_{ik})\neq 0$. However it can be argued that such type of correlation is not as important in practice as per-item correlation where $v_{ij}$ and $v_{kj}$ are correlated but $cor(v_{ij},v_{ik}) = 0$. Unfortunately, it turns out that this additional assumption does not guarantee a constant factor POA, which we show with the following counter-example.
-
-\section{Negative correlation}
-The result of the previous section is surprising and somewhat discouraging. In this section we attempt to further strenthen the assumption and show that in case of negative per-item correlation (granted practically not as intersting), a constant POA bound holds. 
-
-\section{Bayes-Nash POA for iid values via weak duality} 
-We here provide a proof for the POA of 2 for Bayes-Nash equlibria we constructed in attempts to prove a result for correlated values. Although the approach did not prove to be of use for this purpose, we find it to be more intuitive than the proof of \cite{survey} and of independent interest.
+\input{alternative_proof}
 %\begin{thebibliography}{9}
 %\item[survey] 
 %
