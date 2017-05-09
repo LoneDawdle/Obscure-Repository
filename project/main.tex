@@ -1,0 +1,121 @@
+
+\documentclass[twoside,onecolumn]{article}
+
+\usepackage{blindtext} % Package to generate dummy text throughout this template 
+
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage[english]{babel} % Language hyphenation and typographical rules
+\usepackage{graphicx}
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{subcaption}
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{amsmath}
+\usepackage{enumitem} % Customized lists
+\setlist[itemize]{noitemsep} % Make itemize lists more compact
+
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+\usepackage[ruled]{algorithm2e} % For algorithms
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+\usepackage{titlesec} % Allows customization of titles
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+\usepackage{titling} % Customizing the title section
+\usepackage{amsthm}
+\usepackage{hyperref} % For hyperlinks in the PDF
+\usepackage{algorithmic}
+\newcommand{\nc}{\newcommand}
+\nc{\nt}{\newtheorem}
+\nt{thm}{Theorem}[section]
+\nt{cor}[thm]{Corollary}
+\nt{prop}[thm]{Proposition}
+\nt{lem}[thm]{Lemma}
+\nt{defn}[thm]{Definition}
+\nt{rem}[thm]{Remark}
+\nt{exa}[thm]{Example}
+\nt{ass}[thm]{Assumption}
+\nc{\pf}{\noindent{\bf Proof\ \ }}
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\setlength{\droptitle}{-4\baselineskip} % Move the title up
+
+\pretitle{\begin{center}\Huge\bfseries} % Article title formatting
+\posttitle{\end{center}} % Article title closing formatting
+\title{Article Title} % Article title
+\author{%
+\textsc{John Smith}\thanks{A thank you or further information} \\[1ex] % Your name
+\normalsize University of California \\ % Your institution
+\normalsize \href{mailto:john@smith.com}{john@smith.com} % Your email address
+%\and % Uncomment if 2 authors are required, duplicate these 4 lines if more
+%\textsc{Jane Smith}\thanks{Corresponding author} \\[1ex] % Second author's name
+%\normalsize University of Utah \\ % Second author's institution
+%\normalsize \href{mailto:jane@smith.com}{jane@smith.com} % Second author's email address
+}
+\date{\today} % Leave empty to omit a date
+\renewcommand{\maketitlehookd}{%
+
+}
+
+\author{Johan Bjork, Artur Gorokh}
+
+\begin{document}
+\title{POA guarantees for correlated values
+}
+\maketitle
+\section{Introduction}
+
+\cite{survey} provides guarantees for the independent case, \cite{roughgarden} shows that POA can be arbitrary bad for general correlation. However correlation is practically important scenario, and even partial positive results can be of value.  
+
+We consider two specific ideas: general per-item correlation and negative correlation. For first we show a counterexample, for second we outline a potential approach for a proof.
+
+We also give an alternative proof of POA for uncorrelated values which we have discovered along the way and find to be more intuitive that the approach taken in \cite{survey}.
+
+\section{General per-item correlation}
+
+The counter-example in \cite{roughgarden} makes a significant use of inter-item correlation, i.e. $cor(v_{ij},v_{ik})\neq 0$. However it can be argued that such type of correlation is not as important in practice as per-item correlation where $v_{ij}$ and $v_{kj}$ are correlated but $cor(v_{ij},v_{ik}) = 0$. Unfortunately, it turns out that this additional assumption does not guarantee a constant factor POA, which we show with the following counter-example.
+
+\section{Negative correlation}
+The result of the previous section is surprising and somewhat discouraging. In this section we attempt to further strenthen the assumption and show that in case of negative per-item correlation (granted practically not as intersting), a constant POA bound holds. 
+
+\section{Bayes-Nash POA for iid values via weak duality} 
+We here provide a proof for the POA of 2 for Bayes-Nash equlibria we constructed in attempts to prove a result for correlated values. Although the approach did not prove to be of use for this purpose, we find it to be more intuitive than the proof of \cite{survey} and of independent interest.
+%\begin{thebibliography}{9}
+%\item[survey] 
+%
+%\item{2} Bhawalkar, Kshipra, and Tim Roughgarden. "Welfare guarantees for combinatorial auctions with item bidding." Proceedings of the twenty-second annual ACM-SIAM symposium on Discrete Algorithms. Society for Industrial and Applied Mathematics, 2011.
+%\end{thebibliography}
+%
+\begin{thebibliography}{9}
+\bibitem{survey} 
+Price of anarchy in auctions survey.
+ 
+\bibitem{roughgarden} 
+ Bhawalkar, Kshipra, and Tim Roughgarden. "Welfare guarantees for combinatorial auctions with item bidding." Proceedings of the twenty-second annual ACM-SIAM symposium on Discrete Algorithms. Society for Industrial and Applied Mathematics, 2011.
+ 
+\end{thebibliography}
+
+\end{document}
