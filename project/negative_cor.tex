@@ -1,2 +1,38 @@
-\section{Negative correlation}
-The result of the previous section is surprising and somewhat discouraging. In this section we attempt to further strenthen the assumption and show that in case of negative per-item correlation (granted practically not as intersting), a constant POA bound holds. 
+\section{Negative correlation: a potential approach}
+The result of the previous section is somewhat discouraging. In this section we attempt to further strengthen the assumptions and show that in case of negative per-item correlation, granted, practically not as interesting, a constant POA bound holds. We present a potential approach for proving this result and discuss the complications.
+
+We start with clarifying exactly what we mean by negative correlation. We assume that for every item $j$ and every two players $i$ and $i'$ $\EE_{v_j}[v_{ij}|v_{i'j}=x]$ is a non-increasing function. We also assume as previously that valuations for different items do not correlate: $cov(v_{ij},v_{ik})\neq 0$ for $k\neq j$.
+
+Consider the following deviation for a player who has a value profile $v_i$: for each $k\neq i$ sample $v_{kj}'\sim F_{kj}(v_{kj})$ independently of each other (without conditioning on $v_i$), and bid $b_{ij}^*(v_i) = x^*_{ij}(v_i,v_{-i}')$. We have:
+
+$$u_i(b^*(v_i,v_{-i}'),v_{-i}) = \sum_j \left ( \frac{v_{ij}}{2}-\max_{k\neq i}[b_{ij}(v_k)]\right)x_{ij}(v_i,v_{-i}')$$
+
+
+\begin{conjecture}
+For any distribution $F(v)$, and corresponding marginalized distributions $F_{ij}(v_{ij})$ we have
+
+$$\EE_{v_{ij}\sim F_{ij}\ \forall i,j} \sum_{i,j} v_{ij}x^*(v)\geq \frac{1}{2}\EE_{v \sim F(v)}  \sum_{i,j} v_{ij}x^*(v)$$
+\end{conjecture}
+
+
+
+\begin{conjecture}
+Under negatively correlated values in any equilibrium $\max_{k\neq i}[b_{ij}(v_k)]$ and $x_{ij}(v_i,v_{-i}')$ are negatively correlated.
+\end{conjecture}
+
+\textit{Discussion} Notice that $x_{ij}(v_i,v_{-i}')$ can be averaged over $v_{-i}'$, because they are independent of $v$, and the result is non-decreasing function in $v_{ij}$ and non-increasing function of $v_{i,j'}$ for $j'\neq j$. So essentially we need to show that maximum bid of other players on item $j$ is negatively correlated with $v_{ij}$ and positively correlated with $v_{ij'}$. This sounds reasonable, but one needs to somehow employ the assumption of equilibrium in order to reason about the function $b(v)$.
+\bigskip
+\newline Suppose the conjectures are in fact true. We then have
+
+$$\EE_{v_{-i}\sim F(v|v_i)}u_i(b^*(v_i,v_{-i}'),v_{-i}) \geq \sum_j \left ( \frac{v_{ij}}{2}-Rev(j)])]\right)x^*_{ij}(v_i,v_{-i}')$$
+
+
+We here used the fact that expected value of product of negatively correlated variables is less than product of their expectations, and that expected revenue from item $j$ $Rev_j\geq \EE max_{k\neq i} b_j(v)$. Taking expectation over $v_i$ and $v_{-i}'$ (and removing primes from variables' names) we get
+
+$$\EE_{v\sim F(v)}u_i(b^*(v_i,v_{-i}'),v_{-i}) \geq \EE_{v_i\sim F_i(v)\ \forall i} \sum_j \left ( \frac{v_{ij}}{2}-Rev(j)]\right)x^*_{ij}(v_i,v_{-i}')$$
+
+Now we can sum up 
+
+$$\EE_{v\sim F(v)}\sum_i u_i(b^*(v_i,v_{-i}'),v_{-i}) = \EE_{v_i\sim F_i(v)\ \forall i}W_{opt}(v) - Rev$$
+
+Together with Conjecture 3.1 this gives POA of $1/4$.

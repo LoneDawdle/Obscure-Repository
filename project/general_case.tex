@@ -19,7 +19,7 @@ s_j = \begin{cases}
 1 \quad &w.p.\ \frac{1}{1\sqrt{N}}
 \end{cases}
 $$
-First, notice that for large $N$ with high probability with have that $s_j=1$ for no more than $2\sqrt{N}$ no less than $\sqrt{N/2}$ items. Let's call this event $\mathcal{E}_{common}$. (Chernoff bounds can be used to show that this probability is in fact close to 1). This is a bound for the number of "common items".
+First, notice that for large $N$ with high probability with have that $s_j=1$ for no more than $2\sqrt{N}$ and no less than $\sqrt{N/2}$ items. Let's call this event $\mathcal{E}_{common}$. (Chernoff bounds can be used to show that this probability is in fact close to 1). This is a bound for the number of "common items".
 
 Conditioned on $\{s_j\}$ and $\mathcal{E}_{common}$, value distributions of players are independent, and for every agent $i$ there is with probability $\sim 1/e$ a "fluctuation" item $j(i)$ s.t. $s_j=1/N$ and $v_ij = 1$. Notice that, conditioned on $\{s_j\}$, $j(i)$ and $j(i')$ are independent for any players $i$ and $i'$. Clearly the expected optimal welfare under $\{s_j\}$ and $\mathcal{E}_{common}$ is greater than expected welfare of a matching in which every player chooses $j(i)$ (if there are multiple $j(i$ player chooses a random one), which we is $n/e$ (because for every item the probability of no one picking it is $1/e$)
 
