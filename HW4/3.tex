@@ -1,21 +1,45 @@
-\section*{3}
 
 
-\subsection{a}
 
-Suppose the click-rates for setting the prices are $0$ and $1$ but that the real rates are $1$ and $1+\epsilon$, and that we have players who values clicks as $1$ and $1.5$. If both players report their real valuations the player with the higher valuation will pay $1$ per click, which gives him a utility of $0.5(1+\epsilon)$. If he changes strategy to report $1-\epsilon$ he will pay $0$, get $1$ click and have a utility of $1.5$.
+\textbf{a)} Suppose the click-rates for setting the prices are $0$ and $1$ but that the real rates are $1$ and $1+\epsilon$, and that we have players who values clicks as $1$ and $1.5$. If both players report their real valuations the player with the higher valuation will pay $1$ per click, which gives him a utility of $0.5(1+\epsilon)$. If he changes strategy to report $1-\epsilon$ he will pay $0$, get $1$ click and have a utility of $1.5$.
 
 We gave an example where bidding one's value wasn't dominating, in the same example bidding over ones value will not be dominating.
 
 -todo, underbidding
 
 
-\subsection{b}
 
-From the formula given we see that the utility a player receives is bounded by 
+\textbf{b)} We claim that no such  bound exist and it may be profitably to overbid with arbitrary $x$. 
+
+Proof. We construct an example, intuition of which i, the following: if two estimated rates $\tilde \alpha '$ are virtually equal, while the actual rates are not, it makes the conpensation price between the spots close to zero, thus creating an incentive to overbid arbitrarily high.
+
+More formally, suppose there are two bidders $v_1=\frac{1}{\delta}v_2$ and two spots, $\alpha_2=(1+\epsilon)\alpha_1$, s.t. $\alpha_2'=\alpha_1'+\delta^2$ (notice that $\delta$ might be arbitrarily small according to our assumptions). Now, for small enough $\delta$, if player 2 bids half his value, player 1 maximizes his utility by bidding $b_1=v_1/\delta$: $u_1(b_1=v_2) = (1+\epsilon)\alpha_1 v_1 - \delta^2 v_2$ (in contrast bidding truthfully yields $u_1(b_1=v_1) = \alpha_1 v_1$).
+
+\textbf{c)}
+%From the formula given we see that the utility a player receives is bounded by 
+
+%$$
+%(1+\epsilon) \bigg(\alpha_i u_i - \sum_{j>i}b_j (\alpha_{j-1} - \alpha_j) \bigg)
+%$$
+
+We claim it is always a dominated strategy to bid $b_i>v_i(\gamma-(1+\epsilon)^2)$
+
+BWOC, suppose player bids $b_i=v_ix$ with $x>(1+\epsilon)$. Utility of such bid differs from utility of bidding $\tilde b_i=v_i(1+epsilon)$ only if there is another player bidding $b_j\in[v_i(1+\epsilon),v_ix]$ (and potentially multiple bidders in this interval). The gain bid $b_i=v_ix$ gives compared to $\tilde b_i$ is $v_i(\alpha_j-\alpha_i)$ where $j$ is the allocated spot from $b_i$. The increase in price compared to bidding $\tilde b_i$ compared lower-bounded with $\frac{\alpha_j}{\tilde \alpha_j}v_i(1+\epsilon)(\tilde \alpha_j-\tilde \alpha_i)$ (which corresponds to scenario in which only one other bidder bids exactly $v_i(1+\epsilon)$). Thus we have shown that the total gain in utility from bidding $b_i$ is
 
 $$
-(1+\epsilon) \bigg(\alpha_i u_i - \sum_{j>i}b_j (\alpha_{j-1} - \alpha_j) \bigg)
+\Delta u_i \leq v_i(\alpha_j-\alpha_i) - \frac{\alpha_j}{\tilde \alpha_j}v_ix( \alpha_j'- \alpha_i')
 $$
 
+Now let $\alpha_j=c \alpha_i$. This gives us $\alpha_j - \alpha_i =\alpha_i(c-1)$, $\alpha_j - \alpha_i \geq \alpha_i(\frac{c}{1+\epsilon} - (1+\epsilon))$. By assumption $c>1$, so $\Delta u_i$ is non-positive (which means bidding $vx$ is dominated) when $$ \leq v_i(\alpha_j-\alpha_i) \leq \frac{\alpha_j}{\tilde \alpha_j}v_ix( \alpha_j'- \alpha_i')$$
+
+this in turn implies $x\geq (\gamma-(1+\epsilon)^2)$
+
+\textbf{d)} This POA proof essentially repeats the that for simultaneous SP auction. At an equilibrium, consider the deviation of bidding your value.  Denote $max^j(b)$ the j-th maximum value in vector $b$. We have
+
+$$
+u_i(b_i^*,b_{-i})\geq \alpha_i^*(v_i - max^{i^*}b)
+$$
+Here $i^*$ is the spot player $i$ gets at optimal allocation. Now we can sum it up over all players, and because of no overbidding we have $\sum max^{i^*}b\leq SW(b)$. Moving this term to the left we get the POA of 2.
+
+\textbf{e)} We have shown in c) that there exists a critical value $\bar x=(\gamma-(1+\epsilon)^2)$ s.t. bidding $b_i>v_i \bar x$ is always dominated. Hence at equilibrium $\sum_i b_i \leq \bar x SW(b)$. Now using the same approach as in d) we get the POA of $1+\bar x$
 
