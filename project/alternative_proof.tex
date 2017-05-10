@@ -1,2 +1,42 @@
 \section{Bayes-Nash POA for iid values via weak duality} 
-We here provide a proof for the POA of 2 for Bayes-Nash equlibria we constructed in attempts to prove a result for correlated values. Although the approach did not prove to be of use for this purpose, we find it to be more intuitive than the proof of \cite{survey} and of independent interest.
+We here provide a proof for the POA of 2 for Bayes-Nash equlibria we constructed in attempts to prove a result for correlated values. Although the approach did not prove to be of use for this purpose, we find it to be more intuitive than the proof in \cite{survey} and of independent interest.
+
+Consider the LP for optimal allocation:
+
+\begin{align*}
+\max \quad &\EE_{v\sim F} \sum_i\sum_j x_{ij}(v)v_{ij}\\
+s.t.\quad & \sum_i x_{ij}(v)\leq 1 \quad &\forall j,v\\
+& \sum_j x_{ij}(v)\leq 1 \quad &\forall i,v\\
+&x\geq0
+\end{align*}
+
+Note that this is only an LP for finite discrete distributions $F$, however Separated Continuous Linear Programming theory can be used to extend this to non-discrete case. Introducing variables $y_j(v)$ and $z_i(v)$ for the constraints we get the dual:
+
+\begin{align*}
+\min \quad &\EE_{v\sim F} \sum_i z_i(v) + \sum_j y_j(v)\\
+s.t.\quad & z_i(v)\geq v_{ij}-y_j(v) &\forall i,j,v\\
+&y,z\geq0
+\end{align*}
+
+%The dual problem has a clear interpretation: $y_j(v)$ are the prices for items $j$, and $z_j(v)$ are the utilities of players who choose their favourite item according to pricing $y_j(v)$ (as if every item was in infinite supply). Because of weak duality, whenever a pair $y,z$ satisfies the constraints it follows that $\EE \sum_i z_i + \sum_j y_j\geq \EE W_{opt}$.
+%
+%One potential choice is to, given an equilibrium in the original game, set $y_j(v) = b_j^{max}(v)$. However the problem is that it is not a feasible strategy for players to choose their favourite item $j$ according to $y_j$, because value of $b_j^{max}(v)$ is unknown to the players.
+
+Consider the choice $y_j = 2\EE_{v\sim F} b_j^{max} (v)$ (here expactation is also taken over potential randomization of player's strategies. These $y_j$ are public information, so an agent can, given his valuation profile $v_i$, choose $j^* = argmax_j (v_{ij}-2y_j)$, and bid $b^*{ij^*} = y_{j^*}$ (bid 0 if $v_{ij^*}<2y_{j^*}$). This choice results in expected utility of:
+
+\begin{align}
+\label{eq:bstar}
+\EE_{v{-i}\sim F_{-i}} u_i(v_i,b_i^*(v_i),v_{-i}) \geq \frac 1 2 (v_{ij} - y_j)\quad \forall j
+\end{align}
+
+This holds because conditioned on bidding $y_j = 2\EE b_{j}^{max}$ a player has a probability of at least 1/2 for winning.
+
+Now declare $z_i = 2\EE_{v_{-i}}u_i(v_i,b_i^*(v_i),v_{-i})$. Notice that the pair $y_j,z_i$, is a feasible solution for the dual: $z\geq 0 $ is guaranteed because utility of $b_i^*(v_i)$ is never negative, and the constraints $z_i(v)\geq v_{ij}-y_j$ are the same as \eqref{eq:bstar} multiplied by 2.
+
+Since this is a feasible pair, the resulting objective is greater than the optimal objective of the primal LP, which is $\EE W_{opt}(v)$, so we get:
+\begin{align*}
+\EE_{v\sim F} \sum_i z_i(v) + \sum_j y_j(v) \geq \sum_j \EE b_j^{max}(v) + \sum_i 2\EE_{v{-i}\sim F_{-i}} u_i(v_i,b_i^*(v_i),v_{-i}) \\
+= Rev(b) + \sum_i \EE_{v\sim F} u_i(v_i,b_i^*(v_i),v_{-i}) \geq \EE_{v\sim F} W_{opt}(v)
+\end{align*}
+
+The POA bound of 2 now follows.
