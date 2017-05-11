@@ -19,7 +19,7 @@ $$\EE_{v_{ij}\sim F_{ij}\ \forall i,j} \sum_{i,j} v_{ij}x^*(v)\geq \frac{1}{2}\E
 \begin{conjecture}
 Under negatively correlated values in any equilibrium $\max_{k\neq i}[b_{ij}(v_k)]$ and $x_{ij}(v_i,v_{-i}')$ are negatively correlated.
 \end{conjecture}
-
+The conjecture seems to hold in a few of our computational experiments, which we designed to test out the worst case scenario, namely when original distribution $F$ is such that every item always has non-zero value for only one player and all items always can be matched to players (this makes optimal welfare with correlation to differ from that without correlation as much as possible). Unfortunately we haven't had enough time to try the prove the statement.
 \textit{Discussion} Notice that $x_{ij}(v_i,v_{-i}')$ can be averaged over $v_{-i}'$, because they are independent of $v$, and the result is non-decreasing function in $v_{ij}$ and non-increasing function of $v_{i,j'}$ for $j'\neq j$. So essentially we need to show that maximum bid of other players on item $j$ is negatively correlated with $v_{ij}$ and positively correlated with $v_{ij'}$. This sounds reasonable, but one needs to somehow employ the assumption of equilibrium in order to reason about the function $b(v)$.
 \bigskip
 \newline Suppose the conjectures are in fact true. We then have
