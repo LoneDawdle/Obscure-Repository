@@ -22,7 +22,7 @@ s.t.\quad & z_i(v)\geq v_{ij}-y_j(v) &\forall i,j,v\\
 %
 %One potential choice is to, given an equilibrium in the original game, set $y_j(v) = b_j^{max}(v)$. However the problem is that it is not a feasible strategy for players to choose their favourite item $j$ according to $y_j$, because value of $b_j^{max}(v)$ is unknown to the players.
 
-Consider the choice $y_j = 2\EE_{v\sim F} b_j^{max} (v)$ (here expactation is also taken over potential randomization of player's strategies. These $y_j$ are public information, so an agent can, given his valuation profile $v_i$, choose $j^* = argmax_j (v_{ij}-2y_j)$, and bid $b^*{ij^*} = y_{j^*}$ (bid 0 if $v_{ij^*}<2y_{j^*}$). This choice results in expected utility of:
+Consider the choice $y_j = 2\EE_{v\sim F} b_j^{max} (v)$ (here expactation is also taken over potential randomization of player's strategies. These $y_j$ are public information, so an agent can, given his valuation profile $v_i$, choose $j^* = argmax_j (v_{ij}-2y_j)$, and bid $b^*_{ij^*} = y_{j^*}$, and bid 0 if $v_{ij^*}<2y_{j^*}$. This choice results in expected utility of:
 
 \begin{align}
 \label{eq:bstar}
