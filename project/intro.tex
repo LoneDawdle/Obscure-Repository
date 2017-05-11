@@ -1,7 +1,19 @@
 \section{Introduction}
 
-\cite{survey} provides guarantees for the independent case, \cite{roughgarden} shows that POA can be arbitrary bad for general correlation. However correlation is practically important scenario, and even partial positive results can be of value.  
+In this project we look at the setting in which unit-demand agents compete for items  via simultaneous first-price auction. In class we have shown that, in the case when agents' values are independent of each other, the price of anarchy no worse than 2. We also have shown that when the values are arbitrary correlated no constant POA bound exists.
 
-We consider two specific ideas: general per-item correlation and negative correlation. For first we show a counterexample, for second we outline a potential approach for a proof.
+The aim of this project was to, under some additional asumptions about the nature of correlation, look for a way to prove positive POA results for this setting. Although our effort has not been a success, a few interesting results came out of it, and they are the subject of this report:
 
-We also give an alternative proof of POA for uncorrelated values which we have discovered along the way and find to be more intuitive that the approach taken in \cite{survey}.
+\begin{itemize}
+\item We show that under an additional assumption of values being independent for different items no constant POA is still possible by providing a counter-example
+\item Our intuition is that when the item values are negatively correlated, a POA bound may hold. Although we were not able to establish such a bound, we outline a potential approach to doing this and state the missing elements
+\item During our work, we have discovered an alternative duality-based proof of POA for independent values case. We were not able to employ it for studying correlation but provide it anyways as it may be of independent interest
+\item Finally, in appendix we provide a sketch for potential proof under the assumptions \agcomment{Johan can you summarize your assumptions in a short sentence?}
+\end{itemize}
+
+
+%\cite{survey} provides guarantees for the independent case, \cite{roughgarden} shows that POA can be arbitrary bad for general correlation. However correlation is practically important scenario, and even partial positive results can be of value.  
+
+%We consider two specific ideas: general per-item correlation and negative correlation. For first we show a counterexample, for second we outline a potential approach for a proof.
+
+%We also give an alternative proof of POA for uncorrelated values which we have discovered along the way and find to be more intuitive that the approach taken in \cite{survey}.
