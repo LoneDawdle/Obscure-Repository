@@ -1,15 +1,18 @@
+\section{Appendix: proof under variance assumptions}
+
+
 We now present a proof for constant factor POA bounds with correlated values, given a strange set of assumptions. The proof was conceived close to the deadline, and there might be problems we haven't been able to find.
 
 
 Let $i^*$ denote the deviation where a player choses a single item to bid on according to the random distribution over what items he/she should get in the OPT, given his/her valuation. For notational clarity we assume that every player is independently given a random seed number $n_i \sim UNIF(0,1)$ upon which this randomized decision is deterministically based, we call the distribution over all players seed $N$. We additionally assume that the players in the equilibrium deterministically uses the seed to potentially randomize their strategy. We assume that the set $S_j$ denotes the random set of players going for item $j$ when they all use this deviation. We then make the following assumption
 
 $$
-VAR \bigg(\frac{1}{|S_j|+1} \bigg) = c_1^2 \mathbb{E} \bigg[ \frac{1}{|S_j|+1}   \bigg]^2
+VAR \bigg(\frac{1}{|S_j|+1} \bigg) = c_1^2  \mathbb{E} \bigg[ \frac{1}{|S_j|+1}   \bigg]^2
 $$
 
 
 $$
-VAR \bigg(\sum_{i \in S_j} \frac{v_{ij}}{2}} \bigg) = c_2^2 \mathbb{E} \bigg[ \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg]^2
+VAR \bigg(\sum_{i \in S_j} \frac{v_{ij}}{2} \bigg) = c_2^2 \mathbb{E} \bigg[ \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg]^2
 $$
 
 
@@ -71,13 +74,13 @@ $$
 We clearly here have the total revenue, which we can throw to the other side of the equation to get total utility. Let us define player $i^*_j$ for item $j$ as the player who bids on item $j$ when deviating, and additionally have the highest valuation for $j$ among deviating players bidding on $j$. If no player bids on $j$ then $i^*_j$ is undefined.  Let $v_{i^*_j j}$ be the valuation of item $j$ by $i^*$ if $i^*_j$ exits, and be zero else. By definition we have $\sum_j x_{ij} v_{ij} = v_{i^*_j j}$, hence the total utility $U$ we have
 
 $$
-U \ge  \frac{1}{2} \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \big[ v_{i^*_j j} } \big]
+U \ge  \frac{1}{2} \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \big[ v_{i^*_j j}  \big]
 $$
 
 Now the expected valuation $v_{i^*j}$ for item $j$ of the player with the highest valuation among deviating players bidding on $j$, cannot be smaller than the average valuation of $j$ among all players bidding on $j$. If there are no players bidding on item $j$ we have $v_{i^*j}=0$, but if we define define $\frac{1}{\| \emptyset\|} = 0$ we can write
 
 $$
-\frac{1}{2} \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \big[ v_{i^*_j j} } \big] \ge \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \frac{1}{|S_j|}    \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] \ge \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \frac{1}{|S_j|+1}    \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] 
+\frac{1}{2} \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \big[ v_{i^*_j j}  \big]  \ge \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \frac{1}{|S_j|}   \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] \ge \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \frac{1}{|S_j|+1}    \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] 
 $$
 
 Recall that $S_j$ denotes the random set of players bidding on item $j$ when using the deviating strategy. Now using $\mathbb{E}[ab] = \bar{a} \bar{b} + COV(a,b)$ which holds for arbitrary random variables, we get the following expression
@@ -132,4 +135,3 @@ $$
 $$
 
 This gives us a $\frac{1}{4} \big(1  - c_1 c_2 \big) $ bound for POA.
-
