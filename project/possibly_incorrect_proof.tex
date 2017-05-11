@@ -1,5 +1,5 @@
 
-Let $i^*$ denote the deviation where a player choses a single item to bid on according to the random distribution over what items he/she should get in the OPT, given his/her valuation. For notational clarity we assume that every player is independently given a random number $n_i$ in $[0,1]$ upon which this randomized decision is based. We assume that the set $S_j$ denotes the random set of players going for item $j$ when they all use this deviation. We then make the following assumption
+Let $i^*$ denote the deviation where a player choses a single item to bid on according to the random distribution over what items he/she should get in the OPT, given his/her valuation. For notational clarity we assume that every player is independently given a random seed number $n_i \sim UNIF(0,1)$ upon which this randomized decision is deterministically based, we call the distribution over all players seed $N$. We additionally assume that the players in the equilibrium deterministically uses the seed to potentially randomize their strategy. We assume that the set $S_j$ denotes the random set of players going for item $j$ when they all use this deviation. We then make the following assumption
 
 $$
 VAR \bigg(\frac{1}{|S_j|+1} \bigg) = c_1^2 \mathbb{E} \bigg[ \frac{1}{|S_j|+1}   \bigg]^2
@@ -17,27 +17,27 @@ $$
 \sum_i \mathbb{E}_{v \sim V} [ u_i] \ge  \sum_i \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} [ u_i(i^*, -i)] 
 $$
 
-We use subscripts $n \sim N$ to denote the random seed $n_i$ upon which player $i$ bases his/her randomized deviation decision. If a player gets multiple items he/she will use the one with the highest value. We let $u_{ij}$ denote the value that play $i$ derives from item $j$, which will be $v_{ij}$ if the player gets the items and uses it, and zero else. We can now express the utility as the sum over items $j$
+Note that we use subscripts $n \sim N$ to denote the random seed $n_i$ upon which player $i$ bases his/her randomized deviation decision. If a player gets multiple items he/she will use the one with the highest value. We let $u_{ij}$ denote the value that play $i$ derives from item $j$, which will be $v_{ij}$ if the player gets the items and uses it, and zero else. We can now express the utility as the sum over items $j$
 
 $$
 = \sum_{ij} \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} [ u_{ij}(i^*, -i)]
 $$
 
 
-By linearity of expectations we can move the expecations out. The expectation is taken w.r.t to all players jointly drawn valuations and the randomized strategies they use based on their valuations, and the utilities of individual players are for them using the deviation in an equilibra. We have
+By linearity of expectations we can move the expecations out. The expectation is taken w.r.t to all players jointly drawn valuations and random seeds, and the utilities of individual players are for them using the deviation in an equilibra. We now interpret the players as using the deviation simultaneously, but getting the utilities based on the strategies the other players would use in the equlibrium given the random seed $n$ and their valuations.
 
 $$
 = \sum_j  \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \sum_i   u_{ij}(i^*, -i)  \bigg]
 $$
 
 
-Now, since using the deviating strategy guarantees any player using it nonnegative utility for any item, if we just sum up the utilities $u_{ij}(i^*, -i)$ of a random subset of all utilities, we must get something that is not larger then all utilities. To chose this subset we now introduce the random indicator variable $x_{ij}$ that depends upon the randomly chosen strategies and thus on the valuations these strategies are chosen on the basis of. $x_{ij}$ is 1 iff player $i$ bids on item $j$ and additionally has the highest value (or highest value and best lexicographic position among the highest bidders) among all players that bids on $j$ using the deviating strategy. Otherwise it is zero. We now have
+Now, since using the deviating strategy guarantees any player using it nonnegative utility for any item, if we just sum up the utilities $u_{ij}(i^*, -i)$ of a random subset of all utilities, we must get something that is not larger then all utilities. To chose this subset we now introduce the random indicator variable $x_{ij}$ that is 1 iff player $i$ bids on item $j$ and additionally has the highest value (or highest value and best lexicographic position among the highest bidders) among all players that bids on $j$ using the deviating strategy. Otherwise it is zero. We now have
 
 $$
 \ge \sum_j  \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \sum_i  x_{ij} u_{ij}(i^*, -i)  \bigg]
 $$
 
-Now for any player $i$ we can use the fact that bidding half of your valuation $v_{ij}$ on an items $j$ guarantess the utility $v_{ij}/2 - rev(j)$, if you are just bidding on a single item. For any player $i$ and item $j$ we have
+Now for any player $i$ we can use the fact that bidding half of your valuation $v_{ij}$ on an items $j$ guarantess the utility $v_{ij}/2 - rev(j)$ if you are just bidding only on $j$. For any player $i$ and item $j$ we have
 
 $$
 u_{ij} \ge 1_{\textrm{i bids only on j}} (v_{ij}/2 - rev(j))
@@ -52,43 +52,43 @@ $$
 Now note that $x_{ij}=1 \implies 1_{\textrm{i bids only on j}} = 1$, since if a players is the highest bidder for $j$ it must also bid only on $j$ by design of the deviating strategy. Hence we have $x_{ij}= 1_{\textrm{i bids only on j}} x_{ij}$. Thus the bound $u_{ij} x_{ij} \ge x_{ij} (v_{ij}/2 - rev(j))$ holds for any random-seed vector and any set of valuations for all players, and we can use this bound within the expectation to get
 
 $$
-\ge \sum_j  \mathbb{E} \bigg[ \sum_i  x_{ij} \bigg( \frac{v_{ij}}{2} - rev(j) \bigg) \bigg]
+\ge \sum_j  \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \sum_i  x_{ij} \bigg( \frac{v_{ij}}{2} - rev(j) \bigg) \bigg]
 $$
 
 Now as $x_{ij}$ is only one if player $i$ bids on $j$ with the deviating strategy and additionally has the highest value among all players bidding on $j$ when using the deviating strategy, we must have $\sum_{j} x_{ij} \le 1$ for every $j$. This is because there cannot be multiple deviating players all having the highest valuation for $j$ (and additionally best lexicographic position if there are ties). By linearity of expectations, and using the fact that the revenue for any item is non-negative, we now have
 
 $$
-=  \sum_j  \bigg( \frac{1}{2} \mathbb{E} \bigg[ \sum_i  x_{ij} v_{ij} \bigg]  - \mathbb{E} \bigg[ \sum_i x_{ij}  rev(j)  \bigg] \bigg)
+=  \sum_j  \bigg( \frac{1}{2} \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \sum_i  x_{ij} v_{ij} \bigg]  - \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \sum_i x_{ij}  rev(j)  \bigg] \bigg)
 $$
 
 
 $$
-\ge \sum_j  \bigg(  \frac{1}{2} \mathbb{E} \bigg[ \sum_i  x_{ij} v_{ij} \bigg]  -   rev(j)  \bigg)
+\ge \sum_j  \bigg(  \frac{1}{2} \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \sum_i  x_{ij} v_{ij} \bigg]  -   rev(j)  \bigg)
 $$
 
-We clearly here have the total revenue, which we can throw to the other side of the equation to get total utility. Let us define player $i^*_j$ for item $j$ as the player who bids on item $j$ when deviating, and additionally have the highest valuation for $j$ among deviating players bidding on $j$. If no player bids on $j$ then $i^*_j$ is undefined.  Let $v_{i^*_j j}$ be the valuation of item $j$ by $i^*$ if $i^*_j$ exits, and be zero else. By definition we have $\sum_j x_{ij} v_{ij} = v_{i^*_j j}$, hence the total utility is equal to
+We clearly here have the total revenue, which we can throw to the other side of the equation to get total utility. Let us define player $i^*_j$ for item $j$ as the player who bids on item $j$ when deviating, and additionally have the highest valuation for $j$ among deviating players bidding on $j$. If no player bids on $j$ then $i^*_j$ is undefined.  Let $v_{i^*_j j}$ be the valuation of item $j$ by $i^*$ if $i^*_j$ exits, and be zero else. By definition we have $\sum_j x_{ij} v_{ij} = v_{i^*_j j}$, hence the total utility $U$ we have
 
 $$
-=  \frac{1}{2} \sum_j \mathbb{E} \big[ v_{i^*_j j} } \big]
+U \ge  \frac{1}{2} \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \big[ v_{i^*_j j} } \big]
 $$
 
-Now the expected valuation $v_{i^*j}$ for item $j$ of the player with the highest valuation among deviating players bidding on $j$, cannot be smaller than the average valuation of $j$ among all players bidding on $j$. If there are no bidding players we have $v_{i^*j}=0$, but if we define define $\frac{1}{\| \emptyset\|} = 0$ we can write
+Now the expected valuation $v_{i^*j}$ for item $j$ of the player with the highest valuation among deviating players bidding on $j$, cannot be smaller than the average valuation of $j$ among all players bidding on $j$. If there are no players bidding on item $j$ we have $v_{i^*j}=0$, but if we define define $\frac{1}{\| \emptyset\|} = 0$ we can write
 
 $$
-\frac{1}{2} \sum_j \mathbb{E} \big[ v_{i^*_j j} } \big] \ge \sum_j \mathbb{E} \bigg[ \frac{1}{|S_j|}    \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] \ge \sum_j \mathbb{E} \bigg[ \frac{1}{|S_j|+1}    \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] 
+\frac{1}{2} \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \big[ v_{i^*_j j} } \big] \ge \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \frac{1}{|S_j|}    \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] \ge \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \frac{1}{|S_j|+1}    \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] 
 $$
 
 Recall that $S_j$ denotes the random set of players bidding on item $j$ when using the deviating strategy. Now using $\mathbb{E}[ab] = \bar{a} \bar{b} + COV(a,b)$ which holds for arbitrary random variables, we get the following expression
 
 $$
-= \sum_j \mathbb{E} \bigg[ \frac{1}{|S_j|+1}   \bigg]  \mathbb{E} \bigg[  \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg]  + COV \bigg(\frac{1}{|S_j|+1}, \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg)
+= \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \frac{1}{|S_j|+1}   \bigg]  \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[  \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg]  + COV \bigg(\frac{1}{|S_j|+1}, \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg)
 $$
 
 
 Now the correlation can be bounded by the product of the standard deviations of the two variables. Using our assumption we get
 
 $$
-\ge \sum_j \mathbb{E} \bigg[ \frac{1}{|S_j|+1}   \bigg]  \mathbb{E} \bigg[  \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] \bigg(1  - c_1 c_2 \bigg)
+\ge \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[ \frac{1}{|S_j|+1}   \bigg]  \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[  \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] \bigg(1  - c_1 c_2 \bigg)
 $$
 
 Now, as the function $1/(x+1)$ is convex, from Jensen's inequality we get
@@ -114,20 +114,19 @@ $$
 Using this fact we get
 
 $$
-\ge \frac{1}{2} \sum_j \mathbb{E} \bigg[  \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] \bigg(1  - c_1 c_2 \bigg)
+\ge \frac{1}{2} \sum_j \mathbb{E}_{ \substack{ v \sim V \\ n \sim N }} \bigg[  \sum_{i \in S_j} \frac{v_{ij}}{2} \bigg] \bigg(1  - c_1 c_2 \bigg)
 $$
 
-Now if we assume that every player bids the summation $\sum_j \sum_{i \in S_j}$ must go over all players, and hence we should have
+Now as we assume that every player bids, however possibly on the 'worthless' items, the summation $\sum_j \sum_{i \in S_j}$ must go over all players, and hence we should have
 
 $$
 \ge \frac{1}{4} \bigg(1  - c_1 c_2 \bigg)  \sum_i\mathbb{E} [ v_{ij}]
 $$
 
-Now for a single player we see that $\mathbb{E} [ v_{ij}]$ is actually equal to $i$:s expected value in the optimal solution
+Now for a single player we show that $\mathbb{E} [ v_{ij}]$ is actually equal to $i$:s expected value in the optimal solution. If we let $D_{ij}$ denote the marginal distribution of valuations $v_{ij}$ we have
 
 $$
-\mathbb{E} [ v_{ij}] = \sum_{v_{ij} \sim D_i} \sum_j v_{ij} P( \textrm{i gets j in OPT} \,  | \, v_{ij}) = \mathbb{E} [OPT_i]
+\mathbb{E} [ v_{ij}] = \sum_{v_{ij} \sim D_{ij}} \sum_j v_{ij} P( \textrm{i gets j in OPT} \,  | \, v_{ij}) = \mathbb{E} [OPT_i]
 $$
 
 This gives us a $\frac{1}{4} \big(1  - c_1 c_2 \big) $ bound for POA.
-
